@@ -3,7 +3,7 @@ import GetRestaurantRequest from "../../types/requests/restaurant/getRestaurantR
 
 export default async (request: GetRestaurantRequest) => {
     try {
-        return Restaurant.findById(request.id);
+        return await Restaurant.findById(request.id);
     } catch (error) {
 
     }

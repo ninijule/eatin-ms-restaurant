@@ -3,14 +3,12 @@ import createRestaurant from "../use_cases/restaurant/createRestaurant";
 import deleteRestaurant from "../use_cases/restaurant/deleteRestaurant";
 import updateRestaurant from "../use_cases/restaurant/updateRestaurant";
 import getRestaurant from "../use_cases/restaurant/getRestaurant";
+import getAllRestaurant from "../use_cases/restaurant/getAllRestaurant";
 
 import CreateRestaurantRequest from "../types/requests/restaurant/createRestaurantRequest";
 import UpdateRestaurantRequest from "../types/requests/restaurant/updateRestaurantRequest";
 import DeleteRestaurantRequest from "../types/requests/restaurant/deleteRestaurantRequest";
 import GetRestaurantRequest from "../types/requests/restaurant/getRestaurantRequest";
-
-// import getProfile from "../use_cases/getProfile";
-// import getAllProfile from "../use_cases/getAllProfile";
 
 
 export default {
@@ -64,13 +62,13 @@ export default {
     return res.sendStatus(404);
 
   },
-  getAllProfile: async (req: any, res: any) => {
+  getAllRestaurant: async (req: any, res: any) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // return res.status(200).json(await getAllProfile());
+    return res.status(200).json(await getAllRestaurant());
 
   },
   updateRestaurant: async (req: any, res: any) => {

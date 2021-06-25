@@ -28,7 +28,7 @@ router.delete(
 router.get(
   "/",
 
-  restaurantController.getAllProfile
+  restaurantController.getAllRestaurant
 );
 
 
