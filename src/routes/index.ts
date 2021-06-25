@@ -1,10 +1,10 @@
 import RouterConfig from "../types/utils/routerConfig";
-import profileRouter from "./profile";
+import restaurantRouter from "./restaurant";
 
-const profile: RouterConfig = {
-  router: profileRouter,
-  path: "/profile",
+const restaurant: RouterConfig = {
+  router: restaurantRouter,
+  path: "/restaurant",
 };
 
 
-export default [profile];
+export default [restaurant];

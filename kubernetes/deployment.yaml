@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eatin-ms-profile-deployment
+  name: eatin-ms-restaurant-deployment
   labels:
-    app: eatin-ms-profile
+    app: eatin-ms-restaurant
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eatin-ms-profile
+      app: eatin-ms-restaurant
   template:
     metadata:
       labels:
-        app: eatin-ms-profile
+        app: eatin-ms-restaurant
     spec:
       containers:
-        - name: eatin-ms-profile
-          image: eatin-ms-profile
+        - name: eatin-ms-restaurant
+          image: eatin-ms-restaurant
           imagePullPolicy: Never
           ports:
             - containerPort: 3000
@@ -35,10 +35,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eatin-ms-profile-service
+  name: eatin-ms-restaurant-service
 spec:
   selector:
-    app: eatin-ms-profile
+    app: eatin-ms-restaurant
   ports:
     - protocol: TCP
       port: 3000
