@@ -19,7 +19,7 @@ const ArticleSchema = new Schema({
         maxlength: 255
     },
     price: {
-        type: mongoose.Types.Decimal128,
+        type: Number,
         required: true,
         default: null,
         maxlength: 25

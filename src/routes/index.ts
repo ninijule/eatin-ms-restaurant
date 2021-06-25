@@ -6,5 +6,4 @@ const restaurant: RouterConfig = {
   path: "/restaurant",
 };
 
-
 export default [restaurant];
