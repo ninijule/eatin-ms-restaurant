@@ -3,10 +3,8 @@ import { body } from "express-validator";
 import articleController from "../controller/articleController";
 import menuController from "../controller/menuController";
 import restaurantController from "../controller/restaurantController";
-//import articleController from "../controller/articleController";
 
 const router = express.Router();
-
 
 //Restaurant
 router.post(
@@ -85,6 +83,22 @@ router.delete(
   "/:restaurantId/article/:articleId",
 
   articleController.deleteArticle
+);
+
+router.put(
+  "/:restaurantId/article/:articleId",
+
+  body("name").escape().isLength({ min: 0, max: 255 }),
+
+  body("description").escape().isLength({ min: 1, max: 50 }),
+
+  body("price").escape().isLength({ min: 1, max: 50 }),
+
+  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
+
+  body("category").escape().isLength({ min: 1, max: 50 }),
+
+  articleController.updateArticle
 );
 
 
