@@ -22,8 +22,7 @@ export default {
     const request: CreateRestaurantRequest = {
       name: req.body.name,
       description: req.body.description,
-      profilePicture: req.body.profilePicture,
-      profileId: JSON.parse(<string>req.headers.user).id
+      profilePicture: req.body.profilePicture
     };
 
     return res.status(200).json((await createRestaurant(request))._id);
@@ -36,7 +35,8 @@ export default {
     }
 
     const request: DeleteRestaurantRequest = {
-      id: req.params.id
+      id: req.params.id,
+      profileId: JSON.parse(<string>req.headers.user).id,
     }
     await deleteRestaurant(request)
     return res.sendStatus(204);
@@ -78,7 +78,8 @@ export default {
       id: req.params.id,
       name: req.body.name,
       description: req.body.description,
-      profilePicture: req.body.profilePicture
+      profilePicture: req.body.profilePicture,
+      profileId: JSON.parse(<string>req.headers.user).id
     }
     await updateRestaurant(request);
     return res.sendStatus(200);

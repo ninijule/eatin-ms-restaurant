@@ -3,4 +3,5 @@ export default interface UpdateRestaurantRequest {
     name: String,
     description: String,
     profilePicture: String,
+    profileId: String,
 }

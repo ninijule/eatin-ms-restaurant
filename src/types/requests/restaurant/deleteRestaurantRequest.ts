@@ -1,3 +1,4 @@
 export default interface DeleteRestaurantRequest {
-    id: String
+    id: String,
+    profileId: String,
 }
