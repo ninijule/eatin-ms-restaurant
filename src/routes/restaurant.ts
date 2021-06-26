@@ -78,6 +78,12 @@ router.get(
   articleController.getArticle
 );
 
+router.get(
+  "/:restaurantId/article/",
+
+  articleController.getAllArticle
+);
+
 
 router.delete(
   "/:restaurantId/article/:articleId",

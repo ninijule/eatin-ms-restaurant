@@ -3,11 +3,13 @@ import createArticle from "../use_cases/article/createArticle";
 import deleteArticle from "../use_cases/article/deleteArticle";
 import getArticle from "../use_cases/article/getArticle";
 import updateArticle from "../use_cases/article/updateArticle";
+import getAllArticle from "../use_cases/article/getAllArticle";
 
 import CreateArticleRequest from "../types/requests/article/createArticleRequest";
 import DeleteArticleRequest from "../types/requests/article/deleteArticleRequest";
 import GetArticleRequest from "../types/requests/article/getArticleRequest";
 import UpdateArticleRequest from "../types/requests/article/updateArticleRequest";
+import GetAllArticleRequest from "../types/requests/article/getAllArticleRequest";
 
 export default {
     createArticle: async (req: any, res: any) => {
@@ -72,6 +74,20 @@ export default {
         await deleteArticle(request);
         return res.sendStatus(204);
     },
+
+    getAllArticle: async (req: any, res: any) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const request: GetAllArticleRequest = {
+            id: req.params.restaurantId,
+        };
+
+        return res.status(200).json(await getAllArticle(request));
+
+    }
 
 
 
