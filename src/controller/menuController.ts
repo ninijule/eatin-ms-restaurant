@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+import { Request, Response } from "express";
 
 import createMenu from "../use_cases/menu/createMenu";
 import getAllMenu from "../use_cases/menu/getAllMenu";
@@ -13,7 +14,7 @@ import UpdateMenuRequest from "../types/requests/menu/updateMenuRequest";
 import DeleteMenuRequest from "../types/requests/menu/deleteMenuRequest";
 
 export default {
-    createMenu: async (req: any, res: any) => {
+    createMenu: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -30,7 +31,7 @@ export default {
 
         return res.status(200).json((await createMenu(request))._id);
     },
-    getMenu: async (req: any, res: any) => {
+    getMenu: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -41,7 +42,7 @@ export default {
 
         return res.status(200).json(await getMenu(request));
     },
-    getAllMenu: async (req: any, res: any) => {
+    getAllMenu: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -52,7 +53,7 @@ export default {
 
         return res.status(200).json(await getAllMenu(request));
     },
-    updateMenu: async (req: any, res: any) => {
+    updateMenu: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -71,7 +72,7 @@ export default {
         await updateMenu(request);
         return res.sendStatus(200);
     },
-    deleteMenu: async (req: any, res: any) => {
+    deleteMenu: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
