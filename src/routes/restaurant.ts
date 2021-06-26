@@ -57,7 +57,7 @@ router.put(
 //Article
 
 router.post(
-  "/article",
+  "/:restaurantId/article",
 
   body("restaurantId").escape().isLength({ min: 1, max: 26 }),
 
@@ -72,6 +72,12 @@ router.post(
   body("category").escape().isLength({ min: 1, max: 50 }),
 
   articleController.createArticle
+);
+
+router.get(
+  "/:restaurantId/article/:articleId",
+
+  articleController.getArticle
 );
 
 
