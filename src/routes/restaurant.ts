@@ -105,7 +105,11 @@ router.get(
   menuController.getAllMenu
 );
 
+router.get(
+  "/:restaurantId/menu/:menuId",
 
+  menuController.getMenu
+);
 
 
 
