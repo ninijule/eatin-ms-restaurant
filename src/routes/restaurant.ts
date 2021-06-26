@@ -1,6 +1,7 @@
 import express from "express";
 import { body } from "express-validator";
 import articleController from "../controller/articleController";
+import categoryController from "../controller/categoryController";
 import menuController from "../controller/menuController";
 import restaurantController from "../controller/restaurantController";
 
@@ -165,6 +166,16 @@ router.get(
 );
 
 
+//Category
+router.post(
+  "/:restaurantId/category",
+
+  body("name").escape().isLength({ min: 0, max: 255 }),
+
+  body("restaurantId").escape().isLength({ min: 0, max: 50 }),
+
+  categoryController.createCategory
+);
 
 
 

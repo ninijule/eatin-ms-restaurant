@@ -66,7 +66,8 @@ export default {
             description: req.body.description,
             price: req.body.price,
             profilePicture: req.body.profilePicture,
-            category: req.body.category
+            category: req.body.category,
+            profileId: JSON.parse(<string>req.headers.user).id
         };
 
         await updateMenu(request);
@@ -79,6 +80,7 @@ export default {
         }
         const request: DeleteMenuRequest = {
             id: req.params.menuId,
+            profileId: JSON.parse(<string>req.headers.user).id
         };
 
         await deleteMenu(request);

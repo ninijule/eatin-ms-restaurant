@@ -3,15 +3,15 @@ import mongoose from "../db/mongodb/index";
 const Schema = mongoose.Schema;
 
 const CategorySchema = new Schema({
-    restaurantId: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
         maxlength: 25,
-    }
+    },
+    restaurantId: {
+        type: String,
+        required: true,
+    },
 
 });
 

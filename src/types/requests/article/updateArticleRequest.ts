@@ -4,5 +4,6 @@ export default interface UpdateArticleRequest {
     description: String,
     price: Number,
     profilePicture: String,
-    category: String
+    category: String,
+    profileId: String,
 }

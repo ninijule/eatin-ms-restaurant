@@ -55,7 +55,8 @@ export default {
             description: req.body.description,
             price: req.body.price,
             profilePicture: req.body.profilePicture,
-            category: req.body.category
+            category: req.body.category,
+            profileId: JSON.parse(<string>req.headers.user).id
         };
 
         await updateArticle(request);
