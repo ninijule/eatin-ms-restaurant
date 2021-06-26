@@ -17,6 +17,6 @@ export default async (request: UpdateMenuRequest) => {
         menu.price = request.price,
         menu.profilePicture = request.profilePicture,
         menu.category = request.category
-    menu.save();
+    await menu.save();
 
 }

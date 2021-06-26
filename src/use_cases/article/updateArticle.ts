@@ -15,6 +15,6 @@ export default async (request: UpdateArticleRequest) => {
         article.price = request.price,
         article.profilePicture = request.profilePicture,
         article.category = request.category
-    article.save();
+    await article.save();
 
 }

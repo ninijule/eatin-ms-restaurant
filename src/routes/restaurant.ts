@@ -177,6 +177,14 @@ router.post(
   categoryController.createCategory
 );
 
+router.put(
+  "/:restaurantId/category/:categoryId",
+
+  body("name").escape().isLength({ min: 0, max: 255 }),
+
+  categoryController.updateCategory
+);
+
 
 
 export default router;

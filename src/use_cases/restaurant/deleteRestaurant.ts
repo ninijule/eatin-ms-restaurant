@@ -7,6 +7,6 @@ export default async (request: DeleteRestaurantRequest) => {
     if (request.profileId != restaurant.profileId) {
         throw new NotAuthorizedError();
     }
-    restaurant.delete();
+    await restaurant.delete();
 
 };

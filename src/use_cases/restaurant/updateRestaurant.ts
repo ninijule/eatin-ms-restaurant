@@ -11,5 +11,5 @@ export default async (request: UpdateRestaurantRequest) => {
     restaurant.name = request.name;
     restaurant.description = request.description;
     restaurant.profilePicture = request.profilePicture;
-    restaurant.save();
+    await restaurant.save();
 }
