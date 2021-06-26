@@ -70,8 +70,6 @@ export default {
 
         await updateMenu(request);
         return res.sendStatus(200);
-
-
     },
     deleteMenu: async (req: any, res: any) => {
         const errors = validationResult(req);

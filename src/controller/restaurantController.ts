@@ -37,11 +37,8 @@ export default {
     const request: DeleteRestaurantRequest = {
       id: req.params.id
     }
-
-    if (await deleteRestaurant(request)) {
-      return res.sendStatus(204);
-    }
-    return res.sendStatus(404);
+    await deleteRestaurant(request)
+    return res.sendStatus(204);
 
   },
 
@@ -82,11 +79,8 @@ export default {
       description: req.body.description,
       profilePicture: req.body.profilePicture
     }
-
-    if (await updateRestaurant(request)) {
-      return res.sendStatus(200);
-    }
-    return res.sendStatus(404);
+    await updateRestaurant(request);
+    return res.sendStatus(200);
   }
 
 };
