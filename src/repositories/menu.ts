@@ -30,7 +30,7 @@ const MenuSchema = new Schema({
         default: null
     },
     category: {
-        type: Number,
+        type: Array,
         required: true,
         default: null,
     },

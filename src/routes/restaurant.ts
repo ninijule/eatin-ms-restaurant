@@ -75,6 +75,38 @@ router.post(
 );
 
 
+router.put(
+  "/:restaurantId/menu/:menuId",
+
+  body("restaurantId").escape().isLength({ min: 1, max: 26 }),
+
+  body("name").escape().isLength({ min: 0, max: 255 }),
+
+  body("description").escape().isLength({ min: 1, max: 50 }),
+
+  body("price").escape().isLength({ min: 1, max: 50 }),
+
+  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
+
+  body("category").escape().isLength({ min: 1, max: 50 }),
+
+  menuController.updateMenu
+);
+
+router.delete(
+  "/:restaurantId/menu/:menuId",
+
+  menuController.deleteMenu
+);
+
+router.get(
+  "/:id/menu",
+
+  menuController.getAllMenu
+);
+
+
+
 
 
 

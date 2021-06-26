@@ -1,4 +1,4 @@
-export default interface UpdateProfileRequest {
+export default interface UpdateRestaurantRequest {
     id: String,
     name: String,
     description: String,
