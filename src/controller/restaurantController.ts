@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+import { Request, Response } from "express";
 import createRestaurant from "../use_cases/restaurant/createRestaurant";
 import deleteRestaurant from "../use_cases/restaurant/deleteRestaurant";
 import updateRestaurant from "../use_cases/restaurant/updateRestaurant";
@@ -12,7 +13,7 @@ import GetRestaurantRequest from "../types/requests/restaurant/getRestaurantRequ
 
 
 export default {
-  createRestaurant: async (req: any, res: any) => {
+  createRestaurant: async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -21,14 +22,14 @@ export default {
     const request: CreateRestaurantRequest = {
       name: req.body.name,
       description: req.body.description,
-      profilePicture: req.body.profilePicture
-
+      profilePicture: req.body.profilePicture,
+      profileId: JSON.parse(<string>req.headers.user).id
     };
 
     return res.status(200).json((await createRestaurant(request))._id);
   },
 
-  deleteRestaurant: async (req: any, res: any) => {
+  deleteRestaurant: async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -42,7 +43,7 @@ export default {
 
   },
 
-  getRestaurant: async (req: any, res: any) => {
+  getRestaurant: async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -59,7 +60,7 @@ export default {
     return res.sendStatus(404);
 
   },
-  getAllRestaurant: async (req: any, res: any) => {
+  getAllRestaurant: async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -68,7 +69,7 @@ export default {
     return res.status(200).json(await getAllRestaurant());
 
   },
-  updateRestaurant: async (req: any, res: any) => {
+  updateRestaurant: async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });

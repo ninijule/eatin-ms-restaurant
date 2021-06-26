@@ -19,8 +19,13 @@ const RestaurantSchema = new Schema({
         type: String,
         required: true,
         default: null,
-        maxlength: 25
     },
+    profileId: {
+        type: String,
+        required: true,
+        default: null,
+    },
+
 
 });
 

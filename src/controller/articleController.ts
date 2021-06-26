@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+import { Request, Response } from "express";
 import createArticle from "../use_cases/article/createArticle";
 import deleteArticle from "../use_cases/article/deleteArticle";
 import getArticle from "../use_cases/article/getArticle";
@@ -12,7 +13,7 @@ import UpdateArticleRequest from "../types/requests/article/updateArticleRequest
 import GetAllArticleRequest from "../types/requests/article/getAllArticleRequest";
 
 export default {
-    createArticle: async (req: any, res: any) => {
+    createArticle: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -30,7 +31,7 @@ export default {
         return res.status(200).json((await createArticle(request))._id);
     },
 
-    getArticle: async (req: any, res: any) => {
+    getArticle: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -42,7 +43,7 @@ export default {
         return res.status(200).json(await getArticle(request));
     },
 
-    updateArticle: async (req: any, res: any) => {
+    updateArticle: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -61,7 +62,7 @@ export default {
         return res.sendStatus(200);
     },
 
-    deleteArticle: async (req: any, res: any) => {
+    deleteArticle: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -69,13 +70,14 @@ export default {
 
         const request: DeleteArticleRequest = {
             id: req.params.articleId,
+            profileId: JSON.parse(<string>req.headers.user).id
         };
 
         await deleteArticle(request);
         return res.sendStatus(204);
     },
 
-    getAllArticle: async (req: any, res: any) => {
+    getAllArticle: async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
