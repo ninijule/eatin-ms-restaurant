@@ -21,8 +21,8 @@ export default {
 
       const request: CreateCategoryRequest = {
         name: req.body.name,
-        restaurantId: <string>req.query.restaurantId,
-        profileId: JSON.parse(<string>req.query.user).id,
+        restaurantId: <string>req.params.restaurantId,
+        profileId: JSON.parse(<string>req.headers.user).id,
       };
 
       return res.status(200).json((await createCategory(request))._id);

@@ -21,13 +21,13 @@ export default {
       }
 
       const request: CreateArticleRequest = {
-        restaurantId: <string>req.query.restaurantId,
+        restaurantId: <string>req.params.restaurantId,
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
         profilePicture: req.body.profilePicture,
         category: req.body.category,
-        profileId: JSON.parse(<string>req.query.user).id,
+        profileId: JSON.parse(<string>req.headers.user).id,
       };
 
       return res.status(200).json((await createArticle(request))._id);

@@ -22,13 +22,13 @@ export default {
       }
 
       const request: CreateMenuRequest = {
-        restaurantId: <string>req.query.restaurantId,
+        restaurantId: <string>req.params.restaurantId,
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
         profilePicture: req.body.profilePicture,
-        category: req.body.category,
-        profileId: JSON.parse(<string>req.query.user).id,
+        categories: req.body.categories,
+        profileId: JSON.parse(<string>req.headers.user).id,
       };
 
       return res.status(200).json((await createMenu(request))._id);
@@ -75,12 +75,12 @@ export default {
 
       const request: UpdateMenuRequest = {
         id: req.params.menuId,
-        restaurantId: <string>req.query.restaurantId,
+        restaurantId: <string>req.params.restaurantId,
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
         profilePicture: req.body.profilePicture,
-        category: req.body.category,
+        categories: req.body.categories,
         profileId: JSON.parse(<string>req.headers.user).id,
       };
 

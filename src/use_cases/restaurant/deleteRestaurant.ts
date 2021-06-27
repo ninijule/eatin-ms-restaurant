@@ -3,10 +3,14 @@ import NotAuthorizedError from "../../types/errors/notAuthorizedError";
 import DeleteRestaurantRequest from "../../types/requests/restaurant/deleteRestaurantRequest";
 
 export default async (request: DeleteRestaurantRequest) => {
-    const restaurant = await Restaurant.findById(request.id);
-    if (request.profileId != restaurant.profileId) {
-        throw new NotAuthorizedError();
-    }
-    await restaurant.delete();
+  const restaurant = await Restaurant.findById(request.id);
 
+  if (!restaurant) {
+    throw new Error("Restaurant not found");
+  }
+
+  if (request.profileId != restaurant.profileId) {
+    throw new NotAuthorizedError();
+  }
+  await restaurant.delete();
 };

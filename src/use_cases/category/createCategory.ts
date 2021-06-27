@@ -5,6 +5,11 @@ import CreateCategoryRequest from "../../types/requests/category/createCategoryR
 
 export default async (request: CreateCategoryRequest) => {
   const restaurant = await Restaurant.findById(request.restaurantId);
+
+  if (!restaurant) {
+    throw new Error("Restaurant not found");
+  }
+
   if (request.profileId != restaurant.profileId) {
     throw new NotAuthorizedError();
   }

@@ -5,6 +5,6 @@ export default interface UpdateMenuRequest {
   description: String;
   price: Number;
   profilePicture: String;
-  category: String;
+  categories: String[];
   profileId: String;
 }

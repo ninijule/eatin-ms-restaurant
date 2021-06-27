@@ -4,6 +4,6 @@ export default interface CreateMenuRequest {
   description: String;
   price: Number;
   profilePicture: String;
-  category: String;
+  categories: String[];
   profileId: String;
 }

@@ -13,9 +13,9 @@ router.post(
 
   body("name").escape().isLength({ min: 1, max: 50 }),
 
-  body("description").escape().isLength({ min: 0, max: 255 }),
+  body("description").escape().isLength({ min: 1, max: 255 }),
 
-  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
+  body("profilePicture").isLength({ min: 1, max: 255 }),
 
   restaurantController.createRestaurant
 );
@@ -43,9 +43,9 @@ router.put(
 
   body("name").escape().isLength({ min: 1, max: 50 }),
 
-  body("description").escape().isLength({ min: 0, max: 255 }),
+  body("description").escape().isLength({ min: 1, max: 255 }),
 
-  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
+  body("profilePicture").isLength({ min: 1, max: 255 }),
 
   restaurantController.updateRestaurant
 );
@@ -55,13 +55,13 @@ router.put(
 router.post(
   "/:restaurantId/article",
 
-  body("name").escape().isLength({ min: 0, max: 255 }),
+  body("name").escape().isLength({ min: 1, max: 255 }),
 
   body("description").escape().isLength({ min: 1, max: 50 }),
 
   body("price").escape().isLength({ min: 1, max: 50 }),
 
-  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
+  body("profilePicture").isLength({ min: 1, max: 255 }),
 
   body("category").escape().isLength({ min: 1, max: 50 }),
 
@@ -89,13 +89,13 @@ router.delete(
 router.put(
   "/:restaurantId/article/:articleId",
 
-  body("name").escape().isLength({ min: 0, max: 255 }),
+  body("name").escape().isLength({ min: 1, max: 255 }),
 
   body("description").escape().isLength({ min: 1, max: 50 }),
 
   body("price").escape().isLength({ min: 1, max: 50 }),
 
-  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
+  body("profilePicture").isLength({ min: 1, max: 255 }),
 
   body("category").escape().isLength({ min: 1, max: 50 }),
 
@@ -106,15 +106,13 @@ router.put(
 router.post(
   "/:restaurantId/menu",
 
-  body("name").escape().isLength({ min: 0, max: 255 }),
+  body("name").escape().isLength({ min: 1, max: 255 }),
 
   body("description").escape().isLength({ min: 1, max: 50 }),
 
   body("price").escape().isLength({ min: 1, max: 50 }),
 
-  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
-
-  body("category").escape().isLength({ min: 1, max: 50 }),
+  body("profilePicture").isLength({ min: 1, max: 255 }),
 
   menuController.createMenu
 );
@@ -122,15 +120,13 @@ router.post(
 router.put(
   "/:restaurantId/menu/:menuId",
 
-  body("name").escape().isLength({ min: 0, max: 255 }),
+  body("name").escape().isLength({ min: 1, max: 255 }),
 
   body("description").escape().isLength({ min: 1, max: 50 }),
 
   body("price").escape().isLength({ min: 1, max: 50 }),
 
-  body("profilePicture").escape().isLength({ min: 1, max: 50 }),
-
-  body("category").escape().isLength({ min: 1, max: 50 }),
+  body("profilePicture").isLength({ min: 1, max: 255 }),
 
   menuController.updateMenu
 );
@@ -157,7 +153,7 @@ router.get(
 router.post(
   "/:restaurantId/category",
 
-  body("name").escape().isLength({ min: 0, max: 255 }),
+  body("name").escape().isLength({ min: 1, max: 255 }),
 
   categoryController.createCategory
 );
@@ -165,7 +161,7 @@ router.post(
 router.put(
   "/:restaurantId/category/:categoryId",
 
-  body("name").escape().isLength({ min: 0, max: 255 }),
+  body("name").escape().isLength({ min: 1, max: 255 }),
 
   categoryController.updateCategory
 );
