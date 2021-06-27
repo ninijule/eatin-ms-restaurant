@@ -11,7 +11,6 @@ import UpdateRestaurantRequest from "../types/requests/restaurant/updateRestaura
 import DeleteRestaurantRequest from "../types/requests/restaurant/deleteRestaurantRequest";
 import GetRestaurantRequest from "../types/requests/restaurant/getRestaurantRequest";
 
-
 export default {
   createRestaurant: async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -23,14 +22,14 @@ export default {
       const request: CreateRestaurantRequest = {
         name: req.body.name,
         description: req.body.description,
-        profilePicture: req.body.profilePicture
+        profilePicture: req.body.profilePicture,
+        profileId: JSON.parse(<string>req.headers.user).id,
       };
 
       return res.status(200).json((await createRestaurant(request))._id);
     } catch (error) {
       next(error);
     }
-
   },
 
   deleteRestaurant: async (req: Request, res: Response, next: NextFunction) => {
@@ -43,13 +42,12 @@ export default {
       const request: DeleteRestaurantRequest = {
         id: req.params.id,
         profileId: JSON.parse(<string>req.headers.user).id,
-      }
-      await deleteRestaurant(request)
+      };
+      await deleteRestaurant(request);
       return res.sendStatus(204);
     } catch (error) {
       next(error);
     }
-
   },
 
   getRestaurant: async (req: Request, res: Response, next: NextFunction) => {
@@ -60,7 +58,7 @@ export default {
       }
 
       const request: GetRestaurantRequest = {
-        id: req.params.id
+        id: req.params.id,
       };
 
       const result = await getRestaurant(request);
@@ -71,7 +69,6 @@ export default {
     } catch (error) {
       next(error);
     }
-
   },
   getAllRestaurant: async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -84,7 +81,6 @@ export default {
     } catch (error) {
       next(error);
     }
-
   },
   updateRestaurant: async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -97,14 +93,12 @@ export default {
         name: req.body.name,
         description: req.body.description,
         profilePicture: req.body.profilePicture,
-        profileId: JSON.parse(<string>req.headers.user).id
-      }
+        profileId: JSON.parse(<string>req.headers.user).id,
+      };
       await updateRestaurant(request);
       return res.sendStatus(200);
     } catch (error) {
       next(error);
     }
-
-  }
-
+  },
 };

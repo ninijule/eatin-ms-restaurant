@@ -1,3 +1,3 @@
 export default interface GetRestaurantRequest {
-    id: String
+  id: String;
 }

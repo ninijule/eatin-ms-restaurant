@@ -1,5 +1,5 @@
 export default interface UpdateCategoryRequest {
-    id: String,
-    name: String,
-    profileId: String,
+  id: String;
+  name: String;
+  profileId: String;
 }

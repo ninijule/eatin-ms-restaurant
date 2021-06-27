@@ -1,4 +1,4 @@
 export default interface DeleteArticleRequest {
-    id: String,
-    profileId: String,
+  id: String;
+  profileId: String;
 }

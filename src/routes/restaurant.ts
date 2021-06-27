@@ -20,7 +20,6 @@ router.post(
   restaurantController.createRestaurant
 );
 
-
 router.delete(
   "/:id",
 
@@ -33,13 +32,11 @@ router.get(
   restaurantController.getAllRestaurant
 );
 
-
 router.get(
   "/:id",
 
   restaurantController.getRestaurant
 );
-
 
 router.put(
   "/:id",
@@ -57,8 +54,6 @@ router.put(
 
 router.post(
   "/:restaurantId/article",
-
-  body("restaurantId").escape().isLength({ min: 1, max: 26 }),
 
   body("name").escape().isLength({ min: 0, max: 255 }),
 
@@ -82,9 +77,8 @@ router.get(
 router.get(
   "/:restaurantId/article/",
 
-  articleController.getAllArticle
+  articleController.getAllArticles
 );
-
 
 router.delete(
   "/:restaurantId/article/:articleId",
@@ -108,12 +102,9 @@ router.put(
   articleController.updateArticle
 );
 
-
 //Menu
 router.post(
-  "/menu",
-
-  body("restaurantId").escape().isLength({ min: 1, max: 26 }),
+  "/:restaurantId/menu",
 
   body("name").escape().isLength({ min: 0, max: 255 }),
 
@@ -128,11 +119,8 @@ router.post(
   menuController.createMenu
 );
 
-
 router.put(
   "/:restaurantId/menu/:menuId",
-
-  body("restaurantId").escape().isLength({ min: 1, max: 26 }),
 
   body("name").escape().isLength({ min: 0, max: 255 }),
 
@@ -165,14 +153,11 @@ router.get(
   menuController.getMenu
 );
 
-
 //Category
 router.post(
   "/:restaurantId/category",
 
   body("name").escape().isLength({ min: 0, max: 255 }),
-
-  body("restaurantId").escape().isLength({ min: 0, max: 50 }),
 
   categoryController.createCategory
 );
@@ -196,6 +181,5 @@ router.delete(
 
   categoryController.deleteCategory
 );
-
 
 export default router;

@@ -1,4 +1,4 @@
 export default interface DeleteMenuRequest {
-    id: String,
-    profileId: String,
+  id: String;
+  profileId: String;
 }
