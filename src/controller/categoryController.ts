@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import createCategory from "../use_cases/category/createCategory";
 import updateCategory from "../use_cases/category/updateCategory";
@@ -12,7 +12,7 @@ import DeleteCategoryRequest from "../types/requests/category/deleteCategoryRequ
 //import GetCategoryRequest from "../types/requests/category/getCategoryRequest";
 
 export default {
-    createCategory: async (req: Request, res: Response) => {
+    createCategory: async (req: Request, res: Response, next: NextFunction) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -25,7 +25,7 @@ export default {
 
         return res.status(200).json((await createCategory(request))._id);
     },
-    updateCategory: async (req: Request, res: Response) => {
+    updateCategory: async (req: Request, res: Response, next: NextFunction) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -40,7 +40,7 @@ export default {
         await updateCategory(request);
         return res.sendStatus(200);
     },
-    deleteCategory: async (req: Request, res: Response) => {
+    deleteCategory: async (req: Request, res: Response, next: NextFunction) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
