@@ -1,3 +1,3 @@
 export default interface GetAllArticlesRequest {
-  id: String;
+  restaurantId: String;
 }

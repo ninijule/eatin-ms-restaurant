@@ -10,6 +10,8 @@ import CreateCategoryRequest from "../types/requests/category/createCategoryRequ
 import UpdateCategoryRequest from "../types/requests/category/updateCategoryRequest";
 import DeleteCategoryRequest from "../types/requests/category/deleteCategoryRequest";
 import GetCategoryRequest from "../types/requests/category/getCategoryRequest";
+import GetAllCategoriesRequest from "../types/requests/category/getAllCategoriesRequest";
+import getAllCategories from "../use_cases/category/getAllCategories";
 
 export default {
   createCategory: async (req: Request, res: Response, next: NextFunction) => {
@@ -79,6 +81,22 @@ export default {
       };
 
       return res.status(200).json(await getCategory(request));
+    } catch (error) {
+      next(error);
+    }
+  },
+  getAllCategories: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      const request: GetAllCategoriesRequest = {
+        id: req.params.categoryId,
+        restaurantId: req.params.restaurantId,
+      };
+
+      return res.status(200).json(await getAllCategories(request));
     } catch (error) {
       next(error);
     }

@@ -2,6 +2,7 @@ import Category from "../../repositories/category";
 import Menu from "../../repositories/menu";
 import Restaurant from "../../repositories/restaurant";
 import NotAuthorizedError from "../../types/errors/notAuthorizedError";
+import ResourceNotFoundError from "../../types/errors/resourceNotFoundError";
 import UpdateMenuRequest from "../../types/requests/menu/updateMenuRequest";
 
 export default async (request: UpdateMenuRequest) => {
@@ -9,7 +10,7 @@ export default async (request: UpdateMenuRequest) => {
   const restaurant = await Restaurant.findById(menu.restaurantId);
 
   if (!restaurant) {
-    throw new Error("Restaurant not found");
+    throw new ResourceNotFoundError("Restaurant");
   }
 
   if (request.profileId != restaurant.profileId) {
@@ -18,7 +19,7 @@ export default async (request: UpdateMenuRequest) => {
 
   request.categories.forEach(async (category) => {
     if (!(await Category.findById(category))) {
-      throw new Error("Category not found");
+      throw new ResourceNotFoundError("Category");
     }
   });
 

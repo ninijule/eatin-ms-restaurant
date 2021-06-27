@@ -138,7 +138,7 @@ router.delete(
 );
 
 router.get(
-  "/:id/menu",
+  "/:restaurantId/menu",
 
   menuController.getAllMenu
 );
@@ -170,6 +170,12 @@ router.get(
   "/:restaurantId/category/:categoryId",
 
   categoryController.getCategory
+);
+
+router.get(
+  "/:restaurantId/category",
+
+  categoryController.getAllCategories
 );
 
 router.delete(

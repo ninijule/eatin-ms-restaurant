@@ -44,6 +44,7 @@ export default {
       }
       const request: GetMenuRequest = {
         id: req.params.menuId,
+        restaurantId: req.params.restaurantId,
       };
 
       return res.status(200).json(await getMenu(request));
@@ -58,7 +59,7 @@ export default {
         return res.status(400).json({ errors: errors.array() });
       }
       const request: GetAllMenuRequest = {
-        id: req.params.id,
+        restaurantId: req.params.restaurantId,
       };
 
       return res.status(200).json(await getAllMenu(request));

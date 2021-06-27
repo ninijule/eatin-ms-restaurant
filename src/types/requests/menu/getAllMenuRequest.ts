@@ -1,3 +1,3 @@
-export default interface CreateMenuRequest {
-  id: String;
+export default interface GetAllMenuRequest {
+  restaurantId: String;
 }

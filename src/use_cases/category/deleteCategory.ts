@@ -1,6 +1,7 @@
 import Category from "../../repositories/category";
 import Restaurant from "../../repositories/restaurant";
 import NotAuthorizedError from "../../types/errors/notAuthorizedError";
+import ResourceNotFoundError from "../../types/errors/resourceNotFoundError";
 import DeleteCategoryRequest from "../../types/requests/category/deleteCategoryRequest";
 
 export default async (request: DeleteCategoryRequest) => {
@@ -8,7 +9,7 @@ export default async (request: DeleteCategoryRequest) => {
   const restaurant = await Restaurant.findById(category.restaurantId);
 
   if (!restaurant) {
-    throw new Error("Restaurant not found");
+    throw new ResourceNotFoundError("Restaurant");
   }
 
   if (request.profileId != restaurant.profileId) {

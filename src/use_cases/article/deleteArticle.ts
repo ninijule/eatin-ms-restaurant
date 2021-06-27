@@ -1,6 +1,7 @@
 import Article from "../../repositories/article";
 import Restaurant from "../../repositories/restaurant";
 import NotAuthorizedError from "../../types/errors/notAuthorizedError";
+import ResourceNotFoundError from "../../types/errors/resourceNotFoundError";
 import DeleteArticleRequest from "../../types/requests/article/deleteArticleRequest";
 
 export default async (request: DeleteArticleRequest) => {
@@ -8,7 +9,7 @@ export default async (request: DeleteArticleRequest) => {
   const restaurant = await Restaurant.findById(article.restaurantId);
 
   if (!restaurant) {
-    throw new Error("Restaurant not found");
+    throw new ResourceNotFoundError("Restaurant");
   }
 
   if (request.profileId != restaurant.profileId) {

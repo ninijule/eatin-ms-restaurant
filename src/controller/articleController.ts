@@ -44,6 +44,7 @@ export default {
       }
       const request: GetArticleRequest = {
         id: req.params.articleId,
+        restaurantId: req.params.restaurantId,
       };
 
       return res.status(200).json(await getArticle(request));
@@ -103,7 +104,7 @@ export default {
       }
 
       const request: GetAllArticlesRequest = {
-        id: req.params.restaurantId,
+        restaurantId: req.params.restaurantId,
       };
 
       return res.status(200).json(await getAllArticles(request));
