@@ -185,6 +185,17 @@ router.put(
   categoryController.updateCategory
 );
 
+router.get(
+  "/:restaurantId/category/:categoryId",
+
+  categoryController.getCategory
+);
+
+router.delete(
+  "/:restaurantId/category/:categoryId",
+
+  categoryController.deleteCategory
+);
 
 
 export default router;
