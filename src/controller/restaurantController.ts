@@ -10,6 +10,8 @@ import CreateRestaurantRequest from "../types/requests/restaurant/createRestaura
 import UpdateRestaurantRequest from "../types/requests/restaurant/updateRestaurantRequest";
 import DeleteRestaurantRequest from "../types/requests/restaurant/deleteRestaurantRequest";
 import GetRestaurantRequest from "../types/requests/restaurant/getRestaurantRequest";
+import SearchRestaurantRequest from "../types/requests/restaurant/searchRestaurantRequest";
+import searchRestaurant from "../use_cases/restaurant/searchRestaurant";
 
 export default {
   createRestaurant: async (req: Request, res: Response, next: NextFunction) => {
@@ -75,6 +77,18 @@ export default {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
+      }
+
+      if (Object.keys(req.query).length > 0) {
+        const request: SearchRestaurantRequest = {};
+
+        if (req.query.profileId != undefined) {
+          request.profileId = <string>req.query.profileId;
+        }
+
+        if (Object.keys(request).length > 0) {
+          return res.status(200).json(await searchRestaurant(request));
+        }
       }
 
       return res.status(200).json(await getAllRestaurant());
